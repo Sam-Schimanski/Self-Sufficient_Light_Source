@@ -1,4 +1,6 @@
-The passive infrared (*PIR*) sensor measures infrared light radiating from objects within its field of view. Typically used in security and lighting applications.
+# PIR Motion Sensor Brief Description
+
+The passive infrared (**PIR**) sensor measures infrared light radiating from objects within its field of view. Typically used in security and lighting applications.
 
 The specific sensor in use for this project is an arduino specific PIR motion sensor module.
 The sensor module employs three pins, GND, VCC, and OUT. These pins provide a ground connection
