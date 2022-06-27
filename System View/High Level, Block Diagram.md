@@ -1,1 +1,1 @@
-![High Level System View, Block Diagram](https://github.com/Sam-Schimanski/Self-Sufficient_Light_Source/blob/main/High%20Level%20System%20Block%20Diagram.PNG?raw=true)
+![High Level System Block Diagram](https://user-images.githubusercontent.com/108167199/175847730-83541641-c475-4e53-b674-fd6f1da17038.PNG)
