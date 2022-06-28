@@ -46,4 +46,4 @@ Operating voltage: 21 - 33V
 With the use of a low voltage bulb the voltage and current requirements of the system can be meet without much trouble by a series of battery cells.
 For this system it is assumed a 25V input would be appropriate for all system functions.
 
-A set of rechargable 8.4 V 200 mAh batteries have been chosen to power the load [[Ni-MH Battery](https://www.jaycar.co.nz/9-volt-8-4v-200mah-ni-mh-rechargeable-battery/p/SB2467)].
+A set of rechargable 8.4 V 200 mAh batteries have been chosen to power the load [[Ni-MH Battery](https://www.jaycar.co.nz/9-volt-8-4v-200mah-ni-mh-rechargeable-battery/p/SB2467)]. This battery cell having a maximum output current of 400 mA, this being enough to drive both the Arduino and the low voltage bulb. Combined needing ~0.367 A at a maximum [[Leonardo Current Draw](https://www.microcontrollertips.com/microcontroller-power-source-considerations-arduino-faq/#:~:text=The%20maximum%20current%20draw%20of,pin%20is%2090%25%20of%20Vcc.)].
