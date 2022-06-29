@@ -17,4 +17,6 @@ There will be two seperate battery packs involved in this system. One for the co
 light source when required. The other will be recharging thorugh the turbine. Therefore, two, three series celled battery packs
 are to be purchased. The total number of individual cells being require for purchase will be six.
 
-**Add singular battery pack here**
+![Singular Battery Pack](https://user-images.githubusercontent.com/108167199/176364233-036c1c81-5afa-4396-b780-12e95b44bf00.PNG)
+
+**Figure 1**, A singular battery pack, comprised of three Ni-MH cells.
