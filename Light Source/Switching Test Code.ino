@@ -1,4 +1,4 @@
-#define BASEPIN 3 //Base can be opened by an I/O pin.
+#define BASEPIN 3 //Base can be opened by an I/O pin
 #define SOURCEPIN 13
 
 void setup() {
