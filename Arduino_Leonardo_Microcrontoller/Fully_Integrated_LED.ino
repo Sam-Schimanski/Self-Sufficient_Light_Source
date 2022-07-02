@@ -1,4 +1,5 @@
 #include <avr/sleep.h>
+#include <avr/power.h>
 #include <avr/interrupt.h>
 
 #define Base 8
@@ -16,50 +17,59 @@ void Interrupt(void);
 void GoToSleep(void);
 
 void setup() {
-  pinMode(Base, OUTPUT);
-  pinMode(Source, OUTPUT); //Initialize pin inputs and outputs
-  pinMode(DataIn, INPUT);
 
-  for (int i = 0; i < 14; i++) { //Write all pins low
-    
-    digitalWrite(i, LOW);
-  }
-  
-  digitalWrite(Source, HIGH); //Supply current to source leg
-
+  digitalWrite(LED_BUILTIN, LOW);
   attachInterrupt(digitalPinToInterrupt(DataIn), Interrupt, RISING); //Enable interrupt attached to DataIn pin
+
+  delay(1000);
+  
+  GoToSleep();
+
 }
 
 void loop() {
   delay(1000);
   TimeOn = millis() - Timer; //Time after interrupt
   if (TimeOn >= interval_LED) {
-    digitalWrite(Base, LOW);
+    digitalWrite(Base, LOW); //Turn off light
   }
   if (TimeOn >= interval_Sleep)
   GoToSleep();
 }
 
 void Interrupt() {
-  digitalWrite(Base, HIGH);
-  Timer = millis(); //Snapshot of timer at time of interrupt
+  pinMode(Source, OUTPUT);
+  pinMode(Base, OUTPUT);
+  digitalWrite(Source, HIGH); //Source LED
+  digitalWrite(Base, HIGH); //Set emitter
+
+  power_all_enable();
   
-  digitalWrite(LED_BUILTIN, HIGH); //Board is active
+  Timer = millis(); //Snapshot of timer at time of interrupt
 }
 
 void GoToSleep() {
-  digitalWrite(LED_BUILTIN, LOW); //Board is in sleep mode
   
-  set_sleep_mode(SLEEP_MODE_STANDBY); //Selects sleep mode
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN); //Selects sleep mode
   sleep_enable(); //Sets sleep enable bit
 
-  // Disable BOD while sleeping
+  ADCSRA = 0; //Disable ADC
+
+  power_all_disable(); //Disable power reduction register
+
+  // Disable BOD while sleeping, BOD automatically enables coming out of sleep mode
   uint8_t mcucr1 = MCUCR | _BV(BODS) | _BV(BODSE);
   uint8_t mcucr2 = mcucr1 & ~_BV(BODSE);
   MCUCR = mcucr1;
   MCUCR = mcucr2;
 
   sei(); //Enables interrupts to allow wake up
+
+  for (int i = 0; i < 14; i++) { //Make all pins inputs and write low
+    
+    pinMode(i, INPUT);
+    digitalWrite(i, LOW);
+  }
   
   sleep_cpu(); //Puts board in designated sleep mode
   sleep_disable(); //Clears sleep enable bit
