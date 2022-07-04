@@ -1,5 +1,7 @@
 # Transformer Approach
 
+Assumptions, DC-AC conversion, no losses during the transformation.
+
 A transformer approach was considered for ramping up the input voltage to the standard light bulb. A 25.2V battery source with a peak
 current output of 0.4 A was assumed for the input.
 This being three of the chosen batteries in series.
